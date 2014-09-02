@@ -38,7 +38,7 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( http://github.com/my-github-username/clarify-ruby/fork )
+1. Fork it to your github user ie: ( `http://github.com/my-github-username/clarify-ruby/` )
 2. Create your feature branch and rspec tests (`git checkout -b my-new-feature`)
 3. Run the rspec tests with `rake spec`
 4. Commit your changes (`git commit -am 'Add some feature'`)
