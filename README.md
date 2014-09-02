@@ -22,7 +22,7 @@ Or on [Heroku](http://www.heroku)
 
     heroku config:set CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA
 
-    [Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
+[Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
 
 And then execute:
 
