@@ -14,6 +14,16 @@ In bash:
 
     export CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA
 
+If you don't want to load it in your bash file, you can add it on the command line:
+
+    CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA rails s
+
+Or on [Heroku](http://www.heroku)
+
+    heroku config:set CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA
+
+    [Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
+
 And then execute:
 
     $ bundle
