@@ -8,7 +8,15 @@ Add this line to your application's Gemfile:
 
     gem 'clarify_api', require: 'clarify-ruby' 
 
-Add CLARIFY_API_KEY as an environment variable. It is found on your application page at https://developer.clarify.io/apps
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install clarify
+
+Add `CLARIFY_API_KEY` as an environment variable. It is found on your [application page](https://developer.clarify.io/apps).
 
 In bash:
 
@@ -23,14 +31,6 @@ Or on [Heroku](http://www.heroku)
     heroku config:set CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA
 
 [Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install clarify
 
 ## Usage
 
