@@ -6,7 +6,7 @@ A gem to communicate with the ClarifyAPI.
 
 Add this line to your application's Gemfile:
 
-    gem 'clarify', require: 'clarify-ruby' 
+    gem 'clarify_api', require: 'clarify-ruby' 
 
 Add CLARIFY_API_KEY as an environment variable. It is found on your application page at https://developer.clarify.io/apps
 
