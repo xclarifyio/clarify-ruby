@@ -21,7 +21,7 @@ module Clarify
       build_response(response)
     end
 
-    def fetch_bundle(bundle_id=nil, embed="")
+    def find_bundle(bundle_id=nil, embed="")
       raise ArgumentError, "Missing bundle id" if bundle_id.nil?
       response = self.class.get("/#{@version}/bundles/#{bundle_id}?embed=#{embed}", headers: headers)
       build_response(response)

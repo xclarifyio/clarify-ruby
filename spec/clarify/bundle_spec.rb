@@ -15,6 +15,13 @@ module Clarify
       expect(response.data).to include(:_class, :_links, :id)
     end
 
-   
+    it "should find a bundle by id" do
+      response = @bundle.create
+      id = response.data[:id]
+      found = @bundle.find(id)
+      expect(found.data[:id]).to eql id
+    end
   end
+  
 end
+

@@ -8,8 +8,8 @@ module Clarify
       Request.new.create_bundle(args)
     end
 
-    def fetch(bundle_id, embed = "")
-      Request.new.fetch(bundle_id, embed)
+    def find(bundle_id, embed = "")
+      Request.new.find_bundle(bundle_id, embed)
     end
   end
   

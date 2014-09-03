@@ -13,7 +13,7 @@ module Clarify
     end
     
     it "should retrieve the bundle created" do
-      response = Request.new.fetch_bundle(@response.data[:id])
+      response = Request.new.find_bundle(@response.data[:id])
       expect(response.status).to eql 200
     end
   end
