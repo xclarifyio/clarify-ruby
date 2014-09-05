@@ -5,7 +5,7 @@ module Clarify
   class Request
     include HTTParty
     base_uri "https://api.clarify.io/"
-    
+    debug_output
     Response = Struct.new(:status, :data)
     
     def initialize(version = 1)
@@ -27,6 +27,22 @@ module Clarify
       build_response(response)
     end
 
+    def find_bundle_all(args = {})
+      response = self.class.get("/#{@version}/bundles", headers: headers)
+      build_response(response)
+    end
+
+    def delete_bundle(bundle_id)
+      response = self.class.delete("/#{@version}/bundles/#{bundle_id}", headers: headers)
+      build_response(response)
+    end
+
+    def update_bundle(bundle_id, query = {})
+      response = self.class.put("/#{@version}/bundles/#{bundle_id}",
+                                body: query, headers: headers)
+      build_response(response)
+    end
+    
     private
 
     def headers
@@ -34,8 +50,12 @@ module Clarify
     end
 
     def build_response(response)
-      Response.new(response.code,
-                   JSON.parse(response.parsed_response, symbolize_names: true))
+      if response.code != 204  #http code for no content
+        body = JSON.parse(response.parsed_response, symbolize_names: true)
+      else
+        body = "" 
+      end
+      Response.new(response.code, body)
     end
   end
 end

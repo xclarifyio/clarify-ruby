@@ -11,6 +11,19 @@ module Clarify
     def find(bundle_id, embed = "")
       Request.new.find_bundle(bundle_id, embed)
     end
+
+    def all(args = {})
+      Request.new.find_bundle_all(args)
+    end
+
+    def delete(bundle_id)
+
+      Request.new.delete_bundle(bundle_id)
+    end
+
+    def update(bundle_id, args)
+    end 
+    
   end
   
 end
