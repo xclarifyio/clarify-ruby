@@ -1,15 +1,13 @@
-require_relative "../../../lib/clarify"
-
 module Clarify
 
  describe Bundle do
    before do
-     @response = Bundle.new.create_bundle
+     @response = Bundle.new.create
      @bundle_id = @response.data[:id]
    end
 
    after do
-     Bundle.new.delete_bundle(@bundle_id)
+     Bundle.new.delete(@bundle_id)
    end
 
    it "should create a new bundle with all blank values" do
@@ -17,17 +15,17 @@ module Clarify
    end
     
    it "should retrieve the bundle created" do
-     response = Bundle.new.find_bundle(@bundle_id)
+     response = Bundle.new.find(@bundle_id)
      expect(response.status).to eql 200
    end
 
    it "should find all bundles" do
-     response = Bundle.new.find_bundle_all
+     response = Bundle.new.find_all
      expect(response.status).to eql 200
     end
 
     it "should update a bundle" do
-      response = Bundle.new.update_bundle(@bundle_id, {name: "test"})
+      response = Bundle.new.update(@bundle_id, {name: "test"})
       expect(response.status).to eql 202
       expect(response.data.keys).to include(:_class, :_links, :id)
     end
