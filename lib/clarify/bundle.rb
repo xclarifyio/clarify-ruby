@@ -1,5 +1,4 @@
 require 'httparty'
-#require 'json'
 
 module Clarify
   class Bundle
