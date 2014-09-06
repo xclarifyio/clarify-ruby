@@ -2,7 +2,7 @@ require 'httparty'
 require 'json'
 
 module Clarify
-  class Request
+  class Bundle
     include HTTParty
     base_uri "https://api.clarify.io/"
     debug_output
