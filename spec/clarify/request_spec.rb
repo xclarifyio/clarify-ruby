@@ -28,8 +28,8 @@ module Clarify
 
     it "should update a bundle" do
       response = Request.new.update_bundle(@bundle_id, {name: "test"})
-    #  expect(response.status).to eql 201
-      expect(response.data).to eql "blah"
+      expect(response.status).to eql 202
+      expect(response.data.keys).to include(:_class, :_links, :id)
     end
   end
 
