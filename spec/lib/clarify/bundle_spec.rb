@@ -34,9 +34,9 @@ module Clarify
   context "deleting a bundle" do
 
     it "should delete the bundle" do
-      response = Bundle.new.create_bundle
-      Bundle.new.delete_bundle(response.data[:id])
-      expect(Bundle.new.find_bundle(response.data[:id]).status).to be 404
+      response = Bundle.new.create
+      Bundle.new.delete(response.data[:id])
+      expect(Bundle.new.find(response.data[:id]).status).to be 404
     end
 
   end

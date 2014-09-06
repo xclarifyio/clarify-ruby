@@ -1,5 +1,7 @@
 
 require "clarify"
+require "debugger"
+
 RSpec.configure do |config|
-  config.order = :random
+  #config.order = :random
 end
