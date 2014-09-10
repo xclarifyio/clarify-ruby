@@ -7,7 +7,7 @@ module Clarify
       super(version)
     end
 
-    def create(query = {})
+    def create(query={})
       response = self.class.post("/#{self.version}/bundles",
                                  query: query,
                                  headers: self.headers)
@@ -20,7 +20,7 @@ module Clarify
       build_response(response)
     end
 
-    def find_all(args = {})
+    def find_all(args={})
       response = self.class.get("/#{version}/bundles", headers: headers)
       build_response(response)
     end
@@ -30,7 +30,7 @@ module Clarify
       build_response(response)
     end
 
-    def update(bundle_id, query = {})
+    def update(bundle_id, query={})
       response = self.class.put("/#{version}/bundles/#{bundle_id}",
                                 body: query, headers:   headers)
       build_response(response)
