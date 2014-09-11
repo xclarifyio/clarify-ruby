@@ -16,7 +16,19 @@ Or install it yourself as:
 
     $ gem install clarify
 
-Add `CLARIFY_API_KEY` as an environment variable. It is found on your [application page](https://developer.clarify.io/apps).
+add a configuration block to an initializer if you are using rails or in an include file:
+
+```
+Clarify.configure do |config|
+  config.api_key = 'CLARIFY_API_KEY'   # or if you want to use ENV   ENV['CLARIFY_API_KEY']
+end
+```
+
+It doesn't have to be in ENV variable but that is an option. Remember never to check in your API key to a public repository!
+
+Your API key is found on your [application page](https://developer.clarify.io/apps).
+
+If you wish to store your API key in your environment:
 
 In bash:
 
