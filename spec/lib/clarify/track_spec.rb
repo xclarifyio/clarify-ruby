@@ -1,6 +1,7 @@
 module Clarify
 
   describe Track do 
+
     before do
       bundle = Bundle.new.create
       @bundle_id = bundle.data[:id]
@@ -76,8 +77,7 @@ module Clarify
         expect(@find_response.status).to eql 204
       end
     end
-
-
   end
 
 end
+

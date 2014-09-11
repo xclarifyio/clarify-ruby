@@ -1,4 +1,5 @@
 module Clarify
+
   describe Search do
     before do
       @response = Bundle.new.create
@@ -7,9 +8,15 @@ module Clarify
       @response = Track.new.add(@bundle_id, @media_url)
     end
 
+   after do
+     Bundle.new.delete(@bundle_id)
+   end
+
     it "should search for a word in speech" do
       response = Search.new.perform({query: "cat"})
       expect(response.data[:item_results].first[:term_results].first[:matches].first[:hits].size).to eql 2  
     end
   end
+
 end
+

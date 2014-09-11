@@ -38,3 +38,4 @@ module Clarify
   end
 
 end
+

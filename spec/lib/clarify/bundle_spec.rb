@@ -32,13 +32,12 @@ module Clarify
   end
 
   context "deleting a bundle" do
-
     it "should delete the bundle" do
       response = Bundle.new.create
       Bundle.new.delete(response.data[:id])
       expect(Bundle.new.find(response.data[:id]).status).to be 404
     end
-
   end
 
 end
+
