@@ -6,7 +6,7 @@ A gem to communicate with the ClarifyAPI.
 
 Add this line to your application's Gemfile:
 
-    gem 'clarify_api', require: 'clarify-ruby' 
+    gem 'clarify', require: 'clarify-ruby' 
 
 And then execute:
 
@@ -31,6 +31,11 @@ Or on [Heroku](http://www.heroku)
     heroku config:set CLARIFY_API_KEY=atYIFLDSDFsdfssSsd+fsfsdfsd+p+PCwA
 
 [Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
+
+By default, it uses the newest version of the API. If you want to use a specific version use: 
+
+Clarify::Bundle.new.find_all       # uses default version
+Clarify::Bundle.new(4).find_all    # uses version 4
 
 ## Usage
 
