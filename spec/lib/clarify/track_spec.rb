@@ -27,7 +27,6 @@ module Clarify
       end    
     end
 
-
     context "adding a track and deleting a track for bundle" do
       before do
         @media_url = "http://media.clarify.io/audio/samples/harvard-sentences-1.wav"
@@ -42,7 +41,6 @@ module Clarify
         expect(response.data[:tracks]).to be_empty
       end    
     end
-
 
     context "adding a track and finding by track_id" do
       before do
