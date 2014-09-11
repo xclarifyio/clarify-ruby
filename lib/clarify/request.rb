@@ -12,15 +12,15 @@ module Clarify
     #uncomment below for httparty debugging
     #debug_output
 
-    attr_accessor :version, :auth_key
+    attr_accessor :version, :api_key
 
     def initialize(version = 1)
       @version = "v#{version}"
-      @auth_key = ENV['CLARIFY_API_KEY']
+      @api_key = Clarify.configuration.api_key #old ENV['CLARIFY_API_KEY']
     end
 
     def headers
-      {"Authorization" => "Bearer #{@auth_key}"}
+      {"Authorization" => "Bearer #{@api_key}"}
     end
 
     def build_response(response)
