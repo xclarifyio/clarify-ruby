@@ -27,7 +27,7 @@ module Clarify
       end    
     end
 
-    context "adding a track and deleting a track for bundle" do
+    context "adding a track and deleting all tracks for bundle" do
       before do
         @media_url = "http://media.clarify.io/audio/samples/harvard-sentences-1.wav"
         @add_response = Track.new.add(@bundle_id, @media_url)
