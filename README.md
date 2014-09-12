@@ -6,7 +6,7 @@ A gem to communicate with the ClarifyAPI.
 
 Add this line to your application's Gemfile:
 
-    gem 'clarify', require: 'clarify-ruby' 
+    gem 'clarify'
 
 And then execute:
 
