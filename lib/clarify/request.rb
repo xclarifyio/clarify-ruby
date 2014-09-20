@@ -20,7 +20,8 @@ module Clarify
     end
 
     def headers
-      {"Authorization" => "Bearer #{@api_key}"}
+      {"Authorization" => "Bearer #{@api_key}",
+       "User-Agent" => "clarify-gem/#{Clarify::VERSION}/#{Gem.ruby_version.version}"}
     end
 
     def build_response(response)
