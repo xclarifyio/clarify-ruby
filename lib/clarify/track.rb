@@ -32,7 +32,7 @@ module Clarify
     def find(bundle_id, track_id)
       raise ArgumentError, "Missing bundle id" if bundle_id.nil?
       raise ArgumentError, "Missing track id" if track_id.nil?
-      response = self.class.get("/#{version_name  }/bundles/#{bundle_id}/tracks/#{track_id}", headers: headers)
+      response = self.class.get("/#{version_name}/bundles/#{bundle_id}/tracks/#{track_id}", headers: headers)
       build_response(response)    
     end
 
