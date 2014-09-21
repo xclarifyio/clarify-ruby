@@ -8,5 +8,5 @@ end
 
 
 RSpec.configure do |config|
-  #config.order = :random
+  config.order = :random
 end

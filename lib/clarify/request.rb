@@ -12,11 +12,11 @@ module Clarify
     #uncomment below for httparty debugging
     #debug_output
 
-    attr_accessor :version, :api_key
+    attr_accessor :version_name, :api_key
 
-    def initialize(version = 1)
-      @version = "v#{version}"
-      @api_key = Clarify.configuration.api_key #old ENV['CLARIFY_API_KEY']
+    def initialize
+      @version_name = Clarify.configuration.version_name
+      @api_key = Clarify.configuration.api_key 
     end
 
     def headers
