@@ -23,6 +23,7 @@ Clarify.configure do |config|
   config.api_key = 'CLARIFY_API_KEY'   
   # if key in ENV   
   # config.api_key = ENV['CLARIFY_API_KEY']
+  config.version = 1  #default is latest api version
 end
 ```
 
