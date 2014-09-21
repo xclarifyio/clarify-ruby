@@ -53,8 +53,7 @@ By default, it uses the newest version of the API. If you want to use a specific
 
 ## Usage
 
-    Clarify::Bundle.new.find_all       # uses default version
-    Clarify::Bundle.new(4).find_all    # uses version 4
+    Clarify::Bundle.new.find_all       
 
 ## Contributing
 
