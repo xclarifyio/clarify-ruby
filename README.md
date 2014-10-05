@@ -49,11 +49,15 @@ Or on [Heroku](http://www.heroku)
 
 [Read more on heroku environment variables](https://devcenter.heroku.com/articles/config-vars)
 
-By default, it uses the newest version of the API. If you want to use a specific version use: 
+By default, it uses the newest version of the API.
 
 ## Usage
 
-    Clarify::Bundle.new.find_all       
+    @client = Clarify::Bundle.new ENV['CLARIFY_API_KEY']
+
+    bundle = @client.bundles.create(:name => "Harvard Sentences",
+        :media_url => "https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav")
+    puts bundle.id
 
 ## Contributing
 
