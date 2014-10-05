@@ -56,7 +56,7 @@ By default, it uses the newest version of the API.
     @client = Clarify::Bundle.new ENV['CLARIFY_API_KEY']
 
     bundle = @client.bundles.create(:name => "Harvard Sentences",
-        :media_url => "https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav")
+        :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
     puts bundle.id
 
 ## Contributing
