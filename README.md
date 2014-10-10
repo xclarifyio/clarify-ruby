@@ -57,7 +57,7 @@ By default, it uses the newest version of the API.
 
     bundle = @client.bundles.create(:name => "Harvard Sentences",
         :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
-    puts bundle.id
+    bundle.data[:id]
 
 ## Contributing
 
