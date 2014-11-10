@@ -1,3 +1,5 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/?branch=master)
+
 # Clarify
 
 A gem to communicate with the ClarifyAPI.
