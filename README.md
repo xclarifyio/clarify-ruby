@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-ruby/?branch=master) [![Code Climate](https://codeclimate.com/github/Clarify/clarify-ruby/badges/gpa.svg)](https://codeclimate.com/github/Clarify/clarify-ruby)
 
 # Clarify
 
