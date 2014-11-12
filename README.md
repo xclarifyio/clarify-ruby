@@ -33,7 +33,7 @@ It doesn't have to be in ENV variable but that is an option.
 
 **Remember never to check in your API key to a public repository!**
 
-Your API key is found on your [application page](https://developer.clarify.io/apps).
+Your API key is found on your [application page](https://developer.clarify.io/apps/list/).
 
 If you wish to store your API key in your environment:
 
