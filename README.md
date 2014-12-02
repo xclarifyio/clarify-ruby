@@ -4,7 +4,7 @@
 
 A gem to communicate with the ClarifyAPI.
 
-## Installation
+### Installation
 
 Add this line to your application's Gemfile:
 
@@ -55,10 +55,27 @@ By default, it uses the newest version of the API.
 
 ## Usage
 
+To begin using this library, initialize the Clarify object with your API key:
 
-    bundle = Clarify::Bundle.new.create(:name => "Harvard Sentences",
+```ruby
+@client = Clarify::Bundle.new
+```
+
+Then add an audio or video file to your search index:
+
+```ruby
+bundle = Clarify::Bundle.new.create(:name => "Harvard Sentences",
         :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
-    bundle.data[:id]
+bundle.data[:id]
+```
+
+Within minutes your file will be added to your index and available via a simple search:
+
+```ruby
+@client = Clarify::Search.new
+results = @client.perform(:query => "dorothy").data
+bundles = results[:_links][:items]
+```
 
 ## Contributing
 
