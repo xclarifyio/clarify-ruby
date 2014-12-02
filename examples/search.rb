@@ -11,6 +11,18 @@ Clarify.configure do |config|
 end
 
 @client = Clarify::Search.new
+results = @client.perform(:query => "dorothy").data
+bundles = results[:_links][:items]
 
-bundles = @client.perform(:query => "cat").data[:_links][:items];
-bundles.each { |bundle| print bundle[:href]  }
+_bundle = Clarify::Bundle.new
+
+bundles.each do |bundle|
+  _id = bundle[:href][12..44]
+  @test = _bundle.find(_id)
+  print @test.data[:name] + "\n"
+  i = bundles.find_index(bundle)
+  matches = results[:item_results][i][:term_results][0][:matches][0][:hits]
+  matches.each do |match|
+    print match[:start].to_s + " -- " + match[:end].to_s + "\n"
+  end
+end
