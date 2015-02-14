@@ -65,7 +65,7 @@ require 'clarify'
 Then add an audio or video file to your search index:
 
 ```ruby
-bundle = @client.new.create(:name => "Harvard Sentences",
+bundle = @client.create(:name => "Harvard Sentences",
         :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
 bundle.data[:id]
 ```
