@@ -58,13 +58,14 @@ By default, it uses the newest version of the API.
 To begin using this library, initialize the Clarify object with your API key:
 
 ```ruby
+require 'Clarify'
 @client = Clarify::Bundle.new
 ```
 
 Then add an audio or video file to your search index:
 
 ```ruby
-bundle = Clarify::Bundle.new.create(:name => "Harvard Sentences",
+bundle = @client.new.create(:name => "Harvard Sentences",
         :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
 bundle.data[:id]
 ```
