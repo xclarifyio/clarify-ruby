@@ -58,7 +58,7 @@ By default, it uses the newest version of the API.
 To begin using this library, initialize the Clarify object with your API key:
 
 ```ruby
-require 'Clarify'
+require 'clarify'
 @client = Clarify::Bundle.new
 ```
 
