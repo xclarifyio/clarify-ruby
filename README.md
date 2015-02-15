@@ -78,6 +78,8 @@ results = @client.perform(:query => "dorothy").data
 bundles = results[:_links][:items]
 ```
 
+See more examples for listing, getting, and deleting bundles etc. in the /examples folder.
+
 ## Contributing
 
 1. Fork it to your github user ie: ( `http://github.com/my-github-username/clarify-ruby/` )

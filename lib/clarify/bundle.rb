@@ -5,7 +5,7 @@ module Clarify
 
     def create(query={})
       response = self.class.post("/#{version_name}/bundles",
-                                 query: query,
+                                 body: query,
                                  headers: self.headers)
       build_response(response)
     end
