@@ -21,6 +21,8 @@ Or install it yourself as:
 add a configuration block to an initializer if you are using rails or in an include file:
 
 ```
+require 'clarify'
+
 Clarify.configure do |config|
   config.api_key = 'CLARIFY_API_KEY'   
   # if key in ENV   
