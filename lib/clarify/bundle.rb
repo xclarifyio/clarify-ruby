@@ -3,8 +3,12 @@ require_relative 'request'
 module Clarify
   class Bundle < Request
 
+    def bundle_url
+        "/v#{@version}/bundles"
+    end
+
     def create(query={})
-      response = self.class.post("/#{version_name}/bundles",
+      response = self.class.post("#{bundle_url}",
                                  body: query,
                                  headers: self.headers)
       build_response(response)
@@ -12,22 +16,22 @@ module Clarify
 
     def find(bundle_id, args={})
       raise ArgumentError, "Missing bundle id" if bundle_id.nil?
-      response = self.class.get("/#{version_name}/bundles/#{bundle_id}", query: args, headers: headers)
+      response = self.class.get("#{bundle_url}/#{bundle_id}", query: args, headers: headers)
       build_response(response)
     end
 
     def find_all(args={})
-      response = self.class.get("/#{version_name}/bundles", headers: headers)
+      response = self.class.get("#{bundle_url}", headers: headers)
       build_response(response)
     end
 
     def delete(bundle_id)
-      response = self.class.delete("/#{version_name}/bundles/#{bundle_id}", headers: headers)
+      response = self.class.delete("#{bundle_url}/#{bundle_id}", headers: headers)
       build_response(response)
     end
 
     def update(bundle_id, query={})
-      response = self.class.put("/#{version_name}/bundles/#{bundle_id}",
+      response = self.class.put("#{bundle_url}/#{bundle_id}",
                                 body: query, headers:   headers)
       build_response(response)
     end
