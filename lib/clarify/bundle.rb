@@ -4,7 +4,7 @@ module Clarify
   class Bundle < Request
 
     def bundle_url
-        "/v#{@version}/bundles"
+        "/v1/bundles"
     end
 
     def create(query={})
