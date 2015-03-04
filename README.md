@@ -61,13 +61,13 @@ To begin using this library, initialize the Clarify object with your API key:
 
 ```ruby
 require 'clarify'
-@client = Clarify::Bundle.new
+client = Clarify::Bundle.new
 ```
 
 Then add an audio or video file to your search index:
 
 ```ruby
-bundle = @client.create(:name => "Harvard Sentences",
+bundle = client.create(:name => "Harvard Sentences",
         :media_url => "http://media.clarify.io/audio/samples/harvard-sentences-1.wav")
 bundle.data[:id]
 ```
@@ -75,8 +75,8 @@ bundle.data[:id]
 Within minutes your file will be added to your index and available via a simple search:
 
 ```ruby
-@client = Clarify::Search.new
-results = @client.perform(:query => "dorothy").data
+client = Clarify::Search.new
+results = client.perform(:query => "dorothy").data
 bundles = results[:_links][:items]
 ```
 
