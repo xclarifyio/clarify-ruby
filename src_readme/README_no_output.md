@@ -179,8 +179,8 @@ Example output of bundles_paged_over.rb:
 ```
 
 
-[travis-image]: https://travis-ci.org/grahamc/ruby-next.svg
-[travis-url]: https://travis-ci.org/grahamc/ruby-next
+[travis-image]: https://travis-ci.org/Clarify/clarify-ruby.svg
+[travis-url]: https://travis-ci.org/Clarify/clarify-ruby
 
-[cc-image]: https://codeclimate.com/github/grahamc/ruby-next/badges/gpa.svg
-[cc-url]: https://codeclimate.com/github/grahamc/ruby-next
+[cc-image]: https://codeclimate.com/github/Clarify/clarify-ruby/badges/gpa.svg
+[cc-url]: https://codeclimate.com/github/Clarify/clarify-ruby

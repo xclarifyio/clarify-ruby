@@ -97,7 +97,7 @@ pp bundle
 Example output of bundle_fetch.rb:
 ```
 Bundle Name: The Future of Women in Flying
-#<Clarify::Responses::Bundle:0x007fad22751ad0
+#<Clarify::Responses::Bundle:0x007fda739cd8f8
  @body=
   {"id"=>"3fbca3fe3678495fb08fe939dbe4f1cd",
    "version"=>1,
@@ -168,18 +168,18 @@ pp created_bundle
 
 Example output of bundle_create.rb:
 ```
-#<Clarify::Response:0x007f51c549ae08
+#<Clarify::Response:0x007fc597030728
  @body=
-  {"id"=>"c6a82660a8654438b456ca2fc3e32aa4",
+  {"id"=>"4ef898e427ee48b28f939785c3c718a2",
    "_class"=>"Ref",
    "_links"=>
-    {"self"=>{"href"=>"/v1/bundles/c6a82660a8654438b456ca2fc3e32aa4"},
+    {"self"=>{"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2"},
      "curies"=>
       [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
      "clarify:metadata"=>
-      {"href"=>"/v1/bundles/c6a82660a8654438b456ca2fc3e32aa4/metadata"},
+      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/metadata"},
      "clarify:tracks"=>
-      {"href"=>"/v1/bundles/c6a82660a8654438b456ca2fc3e32aa4/tracks"}}},
+      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/tracks"}}},
  @response=#<Net::HTTPCreated 201 Created readbody=true>>
 ```
 
@@ -206,7 +206,7 @@ Example output of searches_paged_over.rb:
  - First American in Earth Orbit
 {"score"=>1,
  "term_results"=>
-  [{"score"=>0.399,
+  [{"score"=>0.379,
     "matches"=>
      [{"type"=>"audio",
        "track"=>0,
@@ -241,8 +241,8 @@ Example output of bundles_paged_over.rb:
 ```
 
 
-[travis-image]: https://travis-ci.org/grahamc/ruby-next.svg
-[travis-url]: https://travis-ci.org/grahamc/ruby-next
+[travis-image]: https://travis-ci.org/Clarify/clarify-ruby.svg
+[travis-url]: https://travis-ci.org/Clarify/clarify-ruby
 
-[cc-image]: https://codeclimate.com/github/grahamc/ruby-next/badges/gpa.svg
-[cc-url]: https://codeclimate.com/github/grahamc/ruby-next
+[cc-image]: https://codeclimate.com/github/Clarify/clarify-ruby/badges/gpa.svg
+[cc-url]: https://codeclimate.com/github/Clarify/clarify-ruby
