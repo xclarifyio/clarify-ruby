@@ -1,0 +1,55 @@
+
+[![Build Status][travis-image]][travis-url] [![Code Climate][cc-image]][cc-url]
+
+# How To
+
+You can get started in minutes using our Quickstarts:
+
+[http://clarify.io/docs/quickstarts/](http://clarify.io/docs/quickstarts/)
+
+## Basic Setup and Examples
+
+Require the library and initialize the Facade, which takes care of
+configuration and client setup.
+
+<%= example('setup.rb') %>
+
+### Search for bundles
+
+<%= example_with_output('bundles_search.rb') %>
+
+### Get a list of bundles
+
+<%= example_with_output('list_bundles.rb') %>
+
+### Fetch a particular bundle
+
+<%= example_with_output('bundle_fetch.rb') %>
+
+### Get a list of bundles and their names
+
+<%= example_with_output('bundles_list_fetch.rb') %>
+
+### Create a bundle
+
+Here you will need your own API key. Creating the bundle will return a 204,
+which means it has been Created, but is not done processing.
+
+<%= example_with_output('bundle_create.rb') %>
+
+## More Advanced Usage
+#
+### Get all of your searches over many pages
+
+<%= example_with_output('searches_paged_over.rb') %>
+
+### Get all of your bundles over many pages
+
+<%= example_with_output('bundles_paged_over.rb') %>
+
+
+[travis-image]: https://travis-ci.org/grahamc/ruby-next.svg
+[travis-url]: https://travis-ci.org/grahamc/ruby-next
+
+[cc-image]: https://codeclimate.com/github/grahamc/ruby-next/badges/gpa.svg
+[cc-url]: https://codeclimate.com/github/grahamc/ruby-next

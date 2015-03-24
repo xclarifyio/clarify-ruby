@@ -1,0 +1,5 @@
+--color
+--tty
+--require spec_helper
+--format=documentation
+--order rand
