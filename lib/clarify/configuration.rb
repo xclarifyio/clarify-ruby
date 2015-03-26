@@ -2,7 +2,7 @@
 module Clarify
   # A Configuration class represents the server to communicate with, and the
   # credentials to consume. You can use multiple Configuration objects with
-  # multiple Client objects to support multiple accounts in the same
+  # multiple RestClient objects to support multiple accounts in the same
   # application.
   class Configuration
     attr_reader :api_key

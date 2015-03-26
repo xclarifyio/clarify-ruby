@@ -4,35 +4,37 @@ describe Clarify::Facade do
   let(:config) { { api_key: 'abc123' } }
   let(:facade) { Clarify::Facade.new(config, opts) }
 
-  context 'with a fake client' do
+  context 'with a fake restclient' do
     let(:url) { double(:url) }
     let(:params) { double(:params) }
-    let(:client) { double(:client) }
-    before(:each) { allow(facade).to receive(:client).and_return(client) }
+    let(:restclient) { double(:restclient) }
+    before(:each) do
+      allow(facade).to receive(:restclient).and_return(restclient)
+    end
     describe '#get' do
-      it 'calls get on the client' do
-        expect(client).to receive(:get).with(url, params)
+      it 'calls get on the restclient' do
+        expect(restclient).to receive(:get).with(url, params)
         facade.get(url, params)
       end
     end
 
     describe '#put' do
-      it 'calls put on the client' do
-        expect(client).to receive(:put).with(url, params)
+      it 'calls put on the restclient' do
+        expect(restclient).to receive(:put).with(url, params)
         facade.put(url, params)
       end
     end
 
     describe '#post' do
-      it 'calls post on the client' do
-        expect(client).to receive(:post).with(url, params)
+      it 'calls post on the restclient' do
+        expect(restclient).to receive(:post).with(url, params)
         facade.post(url, params)
       end
     end
 
     describe '#delete' do
-      it 'calls delete on the client' do
-        expect(client).to receive(:delete).with(url, params)
+      it 'calls delete on the restclient' do
+        expect(restclient).to receive(:delete).with(url, params)
         facade.delete(url, params)
       end
     end
@@ -40,12 +42,12 @@ describe Clarify::Facade do
 
   describe '#pager' do
     let(:collection) { double(:collection) }
-    let(:client) { double(:client) }
+    let(:restclient) { double(:restclient) }
     let(:iterator_klass) { double(:iterator_klass) }
     let(:opts) { { iterator: iterator_klass } }
-    it 'creates an iterator with the client' do
-      expect(facade).to receive(:client).and_return(client)
-      expect(iterator_klass).to receive(:new).with(client, collection)
+    it 'creates an iterator with the restclient' do
+      expect(facade).to receive(:restclient).and_return(restclient)
+      expect(iterator_klass).to receive(:new).with(restclient, collection)
       facade.pager(collection)
     end
   end
@@ -59,24 +61,24 @@ describe Clarify::Facade do
   end
 
   describe '#bundle_repository' do
-    let(:client) { double(:client) }
+    let(:restclient) { double(:restclient) }
     let(:bundle_klass) { double(:bundle_klass) }
     let(:opts) { { bundle_repository: bundle_klass } }
-    it 'creates a bundle repository with the client' do
-      expect(facade).to receive(:client).and_return(client)
-      expect(bundle_klass).to receive(:new).with(client)
+    it 'creates a bundle repository with the restclient' do
+      expect(facade).to receive(:restclient).and_return(restclient)
+      expect(bundle_klass).to receive(:new).with(restclient)
       facade.bundle_repository
     end
   end
 
-  describe '#client' do
+  describe '#restclient' do
     let(:configuration) { double(:configuration) }
-    let(:client_klass) { double(:client_klass) }
-    let(:opts) { { client: client_klass } }
-    it 'creates a new client with the configuration' do
+    let(:restclient_klass) { double(:restclient_klass) }
+    let(:opts) { { rest_client: restclient_klass } }
+    it 'creates a new restclient with the configuration' do
       expect(facade).to receive(:configuration).and_return(configuration)
-      expect(client_klass).to receive(:new).with(configuration)
-      facade.client
+      expect(restclient_klass).to receive(:new).with(configuration)
+      facade.restclient
     end
   end
 

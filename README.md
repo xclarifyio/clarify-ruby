@@ -10,7 +10,7 @@ You can get started in minutes using our Quickstarts:
 ## Basic Setup and Examples
 
 Require the library and initialize the Facade, which takes care of
-configuration and client setup.
+configuration and http client setup.
 
 ```ruby
 # setup.rb
@@ -97,7 +97,7 @@ pp bundle
 Example output of bundle_fetch.rb:
 ```
 Bundle Name: The Future of Women in Flying
-#<Clarify::Responses::Bundle:0x007fda739cd8f8
+#<Clarify::Responses::Bundle:0x007fcb63b358e0
  @body=
   {"id"=>"3fbca3fe3678495fb08fe939dbe4f1cd",
    "version"=>1,
@@ -168,18 +168,18 @@ pp created_bundle
 
 Example output of bundle_create.rb:
 ```
-#<Clarify::Response:0x007fc597030728
+#<Clarify::Response:0x007fbde60404b0
  @body=
-  {"id"=>"4ef898e427ee48b28f939785c3c718a2",
+  {"id"=>"952d3f7469794cffbf05a085bae1079b",
    "_class"=>"Ref",
    "_links"=>
-    {"self"=>{"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2"},
+    {"self"=>{"href"=>"/v1/bundles/952d3f7469794cffbf05a085bae1079b"},
      "curies"=>
       [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
      "clarify:metadata"=>
-      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/metadata"},
+      {"href"=>"/v1/bundles/952d3f7469794cffbf05a085bae1079b/metadata"},
      "clarify:tracks"=>
-      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/tracks"}}},
+      {"href"=>"/v1/bundles/952d3f7469794cffbf05a085bae1079b/tracks"}}},
  @response=#<Net::HTTPCreated 201 Created readbody=true>>
 ```
 

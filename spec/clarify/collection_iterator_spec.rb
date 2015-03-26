@@ -5,14 +5,16 @@ describe Clarify::CollectionIterator do
     let(:coll2) { double(:collection2, next: 3, more?: true) }
     let(:coll3) { double(:collection2, more?: false) }
 
-    let(:client) do
-      client = double(:client)
-      allow(client).to receive(:get).with(any_args)
+    let(:restclient) do
+      restclient = double(:restclient)
+      allow(restclient).to receive(:get).with(any_args)
         .and_return(coll1, coll2, coll3)
 
-      client
+      restclient
     end
-    let(:iterator) { Clarify::CollectionIterator.new(client, client.get(1)) }
+    let(:iterator) do
+      Clarify::CollectionIterator.new(restclient, restclient.get(1))
+    end
 
     it 'iterates over all three collections' do
       expect(iterator.collections.to_a).to eq([coll1, coll2, coll3])
@@ -36,14 +38,16 @@ describe Clarify::CollectionIterator do
       c
     end
 
-    let(:client) do
-      client = double(:client)
-      allow(client).to receive(:get).with(any_args)
+    let(:restclient) do
+      restclient = double(:restclient)
+      allow(restclient).to receive(:get).with(any_args)
         .and_return(coll1, coll2, coll3)
 
-      client
+      restclient
     end
-    let(:iterator) { Clarify::CollectionIterator.new(client, client.get(1)) }
+    let(:iterator) do
+      Clarify::CollectionIterator.new(restclient, restclient.get(1))
+    end
 
     it 'iterates over all the elements inside each collection' do
       expect(iterator.to_a).to eq([1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -63,14 +67,16 @@ describe Clarify::CollectionIterator do
         c
       end
 
-      let(:client) do
-        client = double(:client)
-        allow(client).to receive(:get).with(any_args)
+      let(:restclient) do
+        restclient = double(:restclient)
+        allow(restclient).to receive(:get).with(any_args)
           .and_return(coll1, coll2)
 
-        client
+        restclient
       end
-      let(:iterator) { Clarify::CollectionIterator.new(client, client.get(1)) }
+      let(:iterator) do
+        Clarify::CollectionIterator.new(restclient, restclient.get(1))
+      end
 
       it 'iterates over all the elements inside each collection' do
         expect(iterator.to_a).to eq([[1, 2], [3, 4], [5, 6], [7, 8]])

@@ -4,7 +4,7 @@ require 'json'
 require 'uri'
 
 module Clarify
-  # Implement the HTTP layer. All the communication in this client goes over
+  # Implement the HTTP layer. All the communication in this restclient goes over
   # the one HTTP connection for performance. The connection is created by the
   # input of the Configuration object which is passed in by default.
   #
@@ -15,7 +15,7 @@ module Clarify
   #  3. Converting the resulting responses into Response objects
   #
   # In other words, this does too many things, but it is a start.
-  class Client
+  class RestClient
     attr_reader :config
 
     def initialize(config)

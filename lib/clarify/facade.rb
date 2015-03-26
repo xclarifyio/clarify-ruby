@@ -1,11 +1,11 @@
 
 module Clarify
-  # The Facade simplifies the configuration and bootstrapping of the client
+  # The Facade simplifies the configuration and bootstrapping of the restclient
   # and bundle repository.
   class Facade
     def initialize(config, opts = {})
       @config = config
-      @klass_client = opts.fetch(:client, Clarify::Client)
+      @klass_restclient = opts.fetch(:rest_client, Clarify::RestClient)
       @klass_configuration = opts.fetch(:configuration, Clarify::Configuration)
       @klass_bundle_repository = opts.fetch(:bundle_repository,
                                             Clarify::BundleRepository)
@@ -13,23 +13,23 @@ module Clarify
     end
 
     def get(url, params = {})
-      client.get(url, params)
+      restclient.get(url, params)
     end
 
     def put(url, params = {})
-      client.put(url, params)
+      restclient.put(url, params)
     end
 
     def post(url, params = {})
-      client.post(url, params)
+      restclient.post(url, params)
     end
 
     def delete(url, params = {})
-      client.delete(url, params)
+      restclient.delete(url, params)
     end
 
     def pager(collection)
-      @klass_iterator.new(client, collection)
+      @klass_iterator.new(restclient, collection)
     end
 
     def bundles
@@ -37,11 +37,11 @@ module Clarify
     end
 
     def bundle_repository
-      @bundle_repository ||= @klass_bundle_repository.new(client)
+      @bundle_repository ||= @klass_bundle_repository.new(restclient)
     end
 
-    def client
-      @client ||= @klass_client.new(configuration)
+    def restclient
+      @restclient ||= @klass_restclient.new(configuration)
     end
 
     def configuration

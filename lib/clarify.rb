@@ -4,7 +4,7 @@ module Clarify
 end
 
 require 'clarify/bundle_repository'
-require 'clarify/client'
+require 'clarify/rest_client'
 require 'clarify/configuration'
 require 'clarify/errors'
 require 'clarify/facade'
