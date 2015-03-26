@@ -23,19 +23,19 @@ module ClarifyTests
     def api_key=(val)
       @api_key = val
 
-      @facade = nil
+      @client = nil
     end
 
     def bundle_repository
-      facade.bundle_repository
+      client.bundle_repository
     end
 
     def restclient
-      facade.restclient
+      client.restclient
     end
 
-    def facade
-      @facade ||= Clarify::Facade.new(api_key: api_key)
+    def client
+      @client ||= Clarify::Client.new(api_key: api_key)
     end
   end
 end

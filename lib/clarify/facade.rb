@@ -1,8 +1,8 @@
 
 module Clarify
-  # The Facade simplifies the configuration and bootstrapping of the restclient
+  # The Client simplifies the configuration and bootstrapping of the restclient
   # and bundle repository.
-  class Facade
+  class Client
     def initialize(config, opts = {})
       @config = config
       @klass_restclient = opts.fetch(:rest_client, Clarify::RestClient)

@@ -1,6 +1,6 @@
 require 'clarify'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 results = clarify.bundles.search('plane')
 

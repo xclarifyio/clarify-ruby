@@ -1,7 +1,7 @@
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 bundles = clarify.bundles.fetch
 
