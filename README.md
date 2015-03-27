@@ -9,15 +9,15 @@ You can get started in minutes using our Quickstarts:
 
 ## Basic Setup and Examples
 
-Require the library and initialize the Facade, which takes care of
-configuration and client setup.
+Require the library and initialize the Client, which takes care of
+configuration and http client setup.
 
 ```ruby
 # setup.rb
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 pp clarify
 ```
 
@@ -27,7 +27,7 @@ pp clarify
 # bundles_search.rb
 require 'clarify'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 results = clarify.bundles.search('plane')
 
@@ -60,7 +60,7 @@ First American in Earth Orbit - /v1/bundles/72aaa17a9da745c9be41ab64b60319cb
 ```ruby
 # list_bundles.rb
 require 'clarify'
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 clarify.bundles.fetch.each do |bundle_url|
   puts " - #{bundle_url}"
@@ -86,7 +86,7 @@ Example output of list_bundles.rb:
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 bundle_url = '/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd'
 bundle = clarify.get(bundle_url)
@@ -97,7 +97,7 @@ pp bundle
 Example output of bundle_fetch.rb:
 ```
 Bundle Name: The Future of Women in Flying
-#<Clarify::Responses::Bundle:0x007fda739cd8f8
+#<Clarify::Responses::Bundle:0x007fc9c3171918
  @body=
   {"id"=>"3fbca3fe3678495fb08fe939dbe4f1cd",
    "version"=>1,
@@ -124,7 +124,7 @@ Bundle Name: The Future of Women in Flying
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 bundles = clarify.bundles.fetch
 
@@ -156,7 +156,7 @@ which means it has been Created, but is not done processing.
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: ENV['CLARIFY_API_KEY'])
+clarify = Clarify::Client.new(api_key: ENV['CLARIFY_API_KEY'])
 
 created_bundle = clarify.bundles.create!(
   name: 'Harvard Sentences #1',
@@ -168,18 +168,18 @@ pp created_bundle
 
 Example output of bundle_create.rb:
 ```
-#<Clarify::Response:0x007fc597030728
+#<Clarify::Response:0x007ffb5428fc38
  @body=
-  {"id"=>"4ef898e427ee48b28f939785c3c718a2",
+  {"id"=>"415bd191442846a6839c88ae3956eb64",
    "_class"=>"Ref",
    "_links"=>
-    {"self"=>{"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2"},
+    {"self"=>{"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64"},
      "curies"=>
       [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
      "clarify:metadata"=>
-      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/metadata"},
+      {"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64/metadata"},
      "clarify:tracks"=>
-      {"href"=>"/v1/bundles/4ef898e427ee48b28f939785c3c718a2/tracks"}}},
+      {"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64/tracks"}}},
  @response=#<Net::HTTPCreated 201 Created readbody=true>>
 ```
 
@@ -192,7 +192,7 @@ Example output of bundle_create.rb:
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 first_page = clarify.bundles.search('flight')
 clarify.pager(first_page).each do |result, bundle_url|
@@ -220,7 +220,7 @@ Example output of searches_paged_over.rb:
 # bundles_paged_over.rb
 require 'clarify'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 first_page = clarify.bundles.fetch
 clarify.pager(first_page).each do |bundle_url|

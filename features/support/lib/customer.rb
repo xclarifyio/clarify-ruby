@@ -1,7 +1,7 @@
 
 module ClarifyTests
   # The Customer represents a user of the API. The Customer might do things like
-  # log in with particular keys, or create Clients, Configurations, etc.
+  # log in with particular keys, or create RestClients, Configurations, etc.
   class Customer
     attr_reader :api_key
 
@@ -23,19 +23,19 @@ module ClarifyTests
     def api_key=(val)
       @api_key = val
 
-      @facade = nil
+      @client = nil
     end
 
     def bundle_repository
-      facade.bundle_repository
+      client.bundle_repository
+    end
+
+    def restclient
+      client.restclient
     end
 
     def client
-      facade.client
-    end
-
-    def facade
-      @facade ||= Clarify::Facade.new(api_key: api_key)
+      @client ||= Clarify::Client.new(api_key: api_key)
     end
   end
 end

@@ -22,10 +22,10 @@ Then(/^my results should include a track with the URL "(.*?)"$/) do |url|
     urls = @result.to_a
   end
 
-  bundles = urls.map { |bundle_url| customer.client.get(bundle_url) }
+  bundles = urls.map { |bundle_url| customer.restclient.get(bundle_url) }
 
   tracks = bundles.map do |bundle|
-    customer.client.get(bundle.relation('clarify:tracks'))
+    customer.restclient.get(bundle.relation('clarify:tracks'))
   end
   media_urls = tracks.map do |tracks_resource|
     tracks_resource.map { |track| track['media_url'] }
@@ -45,9 +45,9 @@ When(/^I create a bundle named "(.*?)" with the media url "(.*?)"$/) do |name, u
 end
 
 Then(/^my results should incude a bundle named "(.*?)"$/) do |name|
-  all_results = Clarify::CollectionIterator.new(customer.client, @result)
+  all_results = Clarify::CollectionIterator.new(customer.restclient, @result)
   bundles = all_results.map do |item|
-    customer.client.get(item)
+    customer.restclient.get(item)
   end
   bundle_names = bundles.map(&:name)
 
@@ -67,7 +67,7 @@ end
 
 Then(/^the server should not list my bundle$/) do
   result = customer.bundle_repository.fetch
-  all_results = Clarify::CollectionIterator.new(customer.client, result)
+  all_results = Clarify::CollectionIterator.new(customer.restclient, result)
   bundle_urls = all_results.map do |item|
     item['href']
   end

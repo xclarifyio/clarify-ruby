@@ -9,15 +9,15 @@ You can get started in minutes using our Quickstarts:
 
 ## Basic Setup and Examples
 
-Require the library and initialize the Facade, which takes care of
-configuration and client setup.
+Require the library and initialize the Client, which takes care of
+configuration and http client setup.
 
 ```ruby
 # setup.rb
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 pp clarify
 ```
 
@@ -27,7 +27,7 @@ pp clarify
 # bundles_search.rb
 require 'clarify'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 results = clarify.bundles.search('plane')
 
@@ -57,7 +57,7 @@ Example output of bundles_search.rb:
 ```ruby
 # list_bundles.rb
 require 'clarify'
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 clarify.bundles.fetch.each do |bundle_url|
   puts " - #{bundle_url}"
@@ -76,7 +76,7 @@ Example output of list_bundles.rb:
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 bundle_url = '/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd'
 bundle = clarify.get(bundle_url)
@@ -96,7 +96,7 @@ Example output of bundle_fetch.rb:
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 bundles = clarify.bundles.fetch
 
@@ -121,7 +121,7 @@ which means it has been Created, but is not done processing.
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: ENV['CLARIFY_API_KEY'])
+clarify = Clarify::Client.new(api_key: ENV['CLARIFY_API_KEY'])
 
 created_bundle = clarify.bundles.create!(
   name: 'Harvard Sentences #1',
@@ -145,7 +145,7 @@ Example output of bundle_create.rb:
 require 'clarify'
 require 'pp'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 first_page = clarify.bundles.search('flight')
 clarify.pager(first_page).each do |result, bundle_url|
@@ -165,7 +165,7 @@ Example output of searches_paged_over.rb:
 # bundles_paged_over.rb
 require 'clarify'
 
-clarify = Clarify::Facade.new(api_key: 'docs-api-key')
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
 first_page = clarify.bundles.fetch
 clarify.pager(first_page).each do |bundle_url|

@@ -1,221 +1,93 @@
 
 describe Clarify::Client do
-  let(:config) { double(:configuration) }
-  let(:client) { Clarify::Client.new(config) }
+  let(:opts) { {} }
+  let(:config) { { api_key: 'abc123' } }
+  let(:client) { Clarify::Client.new(config, opts) }
 
-  describe '#get' do
-    it 'creates a get_request and passes it to request' do
-      request = double(:request)
-      response = double(:response)
-
-      expect(client).to receive(:get_request)
-        .with('/hi', {}).and_return(request)
-      expect(client).to receive(:request)
-        .with(request).and_return(response)
-      expect(client.get('/hi')).to eq(response)
-    end
-  end
-
-  describe '#get_request' do
-    subject { client.get_request('/bundle/abc123', a: :b) }
-    it 'creates a Get request' do
-      expect(client).to receive(:make_get_url)
-        .with('/bundle/abc123', a: :b).and_return('/bundle/abc123?a=b')
-
-      expect(subject).to be_a(Net::HTTP::Get)
-      expect(subject.path).to eq('/bundle/abc123?a=b')
-    end
-  end
-
-  describe '#make_get_url' do
-    subject { client.make_get_url(url, params) }
-    context 'with no URL parameters on the input url' do
-      let(:url) { '/bundle/abc123' }
-
-      context 'with no query parameters' do
-        let(:params) { {} }
-
-        it { is_expected.to eq('/bundle/abc123') }
-      end
-
-      context 'with a few query parameters' do
-        let(:params) { { a: :b } }
-
-        it { is_expected.to eq('/bundle/abc123?a=b') }
-      end
-    end
-
-    context 'with URL parameters on the input url' do
-      let(:url) { '/bundle/abc123?a=b' }
-
-      context 'with no query parameters' do
-        let(:params) { {} }
-
-        it { is_expected.to eq('/bundle/abc123?a=b') }
-      end
-
-      context 'with a few query parameters' do
-        let(:params) { { c: :d } }
-
-        it { is_expected.to eq('/bundle/abc123?a=b&c=d') }
-      end
-    end
-  end
-
-  describe '#post' do
-    it 'creates a post_request and passes it to request' do
-      request = double(:request)
-      response = double(:response)
-
-      expect(client).to receive(:post_request)
-        .with('/hi', {}).and_return(request)
-      expect(client).to receive(:request)
-        .with(request).and_return(response)
-      expect(client.post('/hi')).to eq(response)
-    end
-  end
-
-  describe '#post_request' do
-    let(:url) { '/bundle/123' }
-    subject { client.post_request(url) }
-    it { is_expected.to be_a(Net::HTTP::Post) }
-
-    context 'with a body' do
-      let(:body) { { 'hi': 'there' } }
-      subject { client.post_request(url, body).body }
-      it { is_expected.to eq('hi=there') }
-    end
-  end
-
-  describe '#put' do
-    it 'creates a put_request and passes it to request' do
-      request = double(:request)
-      response = double(:response)
-
-      expect(client).to receive(:put_request)
-        .with('/hi', {}).and_return(request)
-      expect(client).to receive(:request)
-        .with(request).and_return(response)
-      expect(client.put('/hi')).to eq(response)
-    end
-  end
-
-  describe '#put_request' do
-    let(:url) { '/bundle/123' }
-    subject { client.put_request(url) }
-    it { is_expected.to be_a(Net::HTTP::Put) }
-
-    context 'with a body' do
-      let(:body) { { 'hi': 'there' } }
-      subject { client.put_request(url, body).body }
-      it { is_expected.to eq('hi=there') }
-    end
-  end
-
-  describe '#delete' do
-    it 'creates a delete_request and passes it to request' do
-      request = double(:request)
-      response = double(:response)
-
-      expect(client).to receive(:delete_request)
-        .with('/hi', {}).and_return(request)
-      expect(client).to receive(:request)
-        .with(request).and_return(response)
-      expect(client.delete('/hi')).to eq(response)
-    end
-  end
-
-  describe '#delete_request' do
-    let(:url) { '/bundle/123' }
-    subject { client.delete_request(url) }
-    it { is_expected.to be_a(Net::HTTP::Delete) }
-  end
-
-  describe '#request' do
-    let(:connection) { double(:connection) }
+  context 'with a fake restclient' do
+    let(:url) { double(:url) }
+    let(:params) { double(:params) }
+    let(:restclient) { double(:restclient) }
     before(:each) do
-      expect(client).to receive(:connection).and_return(connection)
+      allow(client).to receive(:restclient).and_return(restclient)
+    end
+    describe '#get' do
+      it 'calls get on the restclient' do
+        expect(restclient).to receive(:get).with(url, params)
+        client.get(url, params)
+      end
     end
 
-    it 'pipelines data through blessing, then execution, then result' do
-      in_req = double(:request)
-
-      blessed = double(:blessed)
-      expect(client).to receive(:bless_request).with(in_req).and_return(blessed)
-
-      raw_result = double(:raw_result)
-      expect(connection).to receive(:request).with(blessed)
-        .and_return(raw_result)
-
-      out_result = double(:result)
-      expect(client).to receive(:make_result).and_return(out_result)
-
-      expect(client.request(in_req)).to eq(out_result)
-    end
-  end
-
-  describe '#bless_request' do
-    subject { client.bless_request({}) }
-    before(:each) { allow(client).to receive(:user_agent).and_return 'UA' }
-
-    context 'with no API key' do
-      let(:config) { double(:config, api_key?: false) }
-      it { is_expected.to eq('User-Agent' => 'UA') }
+    describe '#put' do
+      it 'calls put on the restclient' do
+        expect(restclient).to receive(:put).with(url, params)
+        client.put(url, params)
+      end
     end
 
-    context 'with an API key' do
-      let(:config) { double(:config, api_key?: true, api_key: 'abc123') }
-      it do
-        headers = {
-          'User-Agent' => 'UA',
-          'Authorization' => 'Bearer abc123'
-        }
-        is_expected.to eq(headers)
+    describe '#post' do
+      it 'calls post on the restclient' do
+        expect(restclient).to receive(:post).with(url, params)
+        client.post(url, params)
+      end
+    end
+
+    describe '#delete' do
+      it 'calls delete on the restclient' do
+        expect(restclient).to receive(:delete).with(url, params)
+        client.delete(url, params)
       end
     end
   end
 
-  describe '#user_agent' do
-    subject { client.user_agent }
-    it do
-      ruby_id = "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
-
-      expect(subject).to eq("clarify-ruby/#{Clarify::VERSION}/#{ruby_id}")
+  describe '#pager' do
+    let(:collection) { double(:collection) }
+    let(:restclient) { double(:restclient) }
+    let(:iterator_klass) { double(:iterator_klass) }
+    let(:opts) { { iterator: iterator_klass } }
+    it 'creates an iterator with the restclient' do
+      expect(client).to receive(:restclient).and_return(restclient)
+      expect(iterator_klass).to receive(:new).with(restclient, collection)
+      client.pager(collection)
     end
   end
 
-  describe '#make_result' do
-    it 'passes the response to the factory' do
-      raw_response = double(:raw_response)
-      response = double(:response)
-      factory = double(:factory)
-      expect(factory).to receive(:make_result).with(raw_response)
-        .and_return(response)
-      expect(client).to receive(:response_factory).and_return(factory)
-
-      expect(client.make_result(raw_response)).to eq(response)
+  describe '#bundles' do
+    let(:repo) { double(:repo) }
+    it 'calls the bundle_repository method' do
+      expect(client).to receive(:bundle_repository).and_return(repo)
+      expect(client.bundles).to eq(repo)
     end
   end
 
-  describe '#response_factory' do
-    it 'returns a ResponseFactory' do
-      expect(client.response_factory).to be_a(Clarify::ResponseFactory)
+  describe '#bundle_repository' do
+    let(:restclient) { double(:restclient) }
+    let(:bundle_klass) { double(:bundle_klass) }
+    let(:opts) { { bundle_repository: bundle_klass } }
+    it 'creates a bundle repository with the restclient' do
+      expect(client).to receive(:restclient).and_return(restclient)
+      expect(bundle_klass).to receive(:new).with(restclient)
+      client.bundle_repository
     end
   end
 
-  describe '#connection' do
-    let(:config) { double(:config, host: 'abc', port: 123, ssl?: true) }
-    it 'uses configuration options to generate the connection' do
-      expect(client.connection.address).to eq('abc')
-      expect(client.connection.port).to eq(123)
-      expect(client.connection.use_ssl?).to eq(true)
+  describe '#restclient' do
+    let(:configuration) { double(:configuration) }
+    let(:restclient_klass) { double(:restclient_klass) }
+    let(:opts) { { rest_client: restclient_klass } }
+    it 'creates a new restclient with the configuration' do
+      expect(client).to receive(:configuration).and_return(configuration)
+      expect(restclient_klass).to receive(:new).with(configuration)
+      client.restclient
     end
+  end
 
-    context 'without ssl' do
-      let(:config) { double(:config, host: 'abc', port: 123, ssl?: false) }
-      it 'uses configuration options to generate the connection' do
-        expect(client.connection.use_ssl?).to eq(false)
-      end
+  describe '#configuration' do
+    let(:config_klass) { double(:config_klass) }
+    let(:opts) { { configuration: config_klass } }
+    it 'should create a new Configuration from the opts' do
+      expect(config_klass).to receive(:new).with(config)
+      client.configuration
     end
   end
 end

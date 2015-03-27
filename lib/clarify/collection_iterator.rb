@@ -4,8 +4,8 @@ module Clarify
   class CollectionIterator
     include Enumerable
 
-    def initialize(client, collection)
-      @client = client
+    def initialize(restclient, collection)
+      @restclient = restclient
       @collection = collection
     end
 
@@ -19,7 +19,7 @@ module Clarify
         loop do
           y << current
           break unless current.more?
-          current = @client.get(current.next)
+          current = @restclient.get(current.next)
         end
       end
     end
