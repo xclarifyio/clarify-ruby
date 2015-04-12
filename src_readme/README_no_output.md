@@ -111,6 +111,28 @@ Example output of bundles_list_fetch.rb:
 <output of bundles_list_fetch.rb>
 ```
 
+### Get a list of tracks and the URL of their original media
+
+```ruby
+# bundles_show_tracks.rb
+require 'clarify'
+
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
+
+clarify.bundles.fetch.each do |bundle_url|
+  tracks_url = clarify.get(bundle_url).relation('clarify:tracks')
+
+  clarify.get(tracks_url).each do |track|
+    puts " - #{track['media_url']}"
+  end
+end
+```
+
+Example output of bundles_show_tracks.rb:
+```
+<output of bundles_show_tracks.rb>
+```
+
 ### Create a bundle
 
 Here you will need your own API key. Creating the bundle will return a 204,

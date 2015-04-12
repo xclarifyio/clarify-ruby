@@ -146,6 +146,35 @@ Example output of bundles_list_fetch.rb:
  - Bundle Name: Resignation Address
 ```
 
+### Get a list of tracks and the URL of their original media
+
+```ruby
+# bundles_show_tracks.rb
+require 'clarify'
+
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
+
+clarify.bundles.fetch.each do |bundle_url|
+  tracks_url = clarify.get(bundle_url).relation('clarify:tracks')
+
+  clarify.get(tracks_url).each do |track|
+    puts " - #{track['media_url']}"
+  end
+end
+```
+
+Example output of bundles_show_tracks.rb:
+```
+ - http://archive.org/download/Greatest_Speeches_of_the_20th_Century/TheFutureofWomeninFlying_64kb.mp3
+ - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/ElectionEveCampaignSpeech_64kb.mp3
+ - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/AddresstotheWomenofAmerica_64kb.mp3
+ - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/AddresstoCongress-1958_64kb.mp3
+ - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/OnBlackPower_64kb.mp3
+ - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit_64kb.mp3
+ - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/OnReleasingtheWatergateTapes_64kb.mp3
+ - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/ResignationAddress-1974_64kb.mp3
+```
+
 ### Create a bundle
 
 Here you will need your own API key. Creating the bundle will return a 204,
