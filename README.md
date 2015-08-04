@@ -49,10 +49,12 @@ end
 
 Example output of bundles_search.rb:
 ```
-The Future of Women in Flying - /v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd
-	matched audio content at 68.92 to 69.31
-First American in Earth Orbit - /v1/bundles/72aaa17a9da745c9be41ab64b60319cb
-	matched audio content at 99.25 to 99.43
+Obama-2004-DNC-Keynote - /v1/bundles/51ee9932989c47d3adf734c4e467c83f
+	matched audio content at 951.62 to 951.82
+How-Schools-Kill-Creativity - /v1/bundles/6864abafeee8458bb9902628ee270cae
+	matched audio content at 485.92 to 486.11
+The-Surprising-Science-of-Happiness - /v1/bundles/d6dcddf1066b4dd4bed78334e553e233
+	matched audio content at 80.94 to 81.57
 ```
 
 ### Get a list of bundles
@@ -69,14 +71,16 @@ end
 
 Example output of list_bundles.rb:
 ```
- - /v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd
- - /v1/bundles/2a112c5b3e944802b932b0ddbf068c37
- - /v1/bundles/ca4fbc504c6940cd96f270a0ca903917
- - /v1/bundles/378efa8d163240478ae7d460c20fdb41
- - /v1/bundles/4577432c51ab4fcdbed34be16ba363a2
- - /v1/bundles/72aaa17a9da745c9be41ab64b60319cb
- - /v1/bundles/2a0a63d07c6b46f99638edb961bc08f6
- - /v1/bundles/45a8a6849e1948cea8bbb8dcb3440b68
+ - /v1/bundles/d6dcddf1066b4dd4bed78334e553e233
+ - /v1/bundles/f87a4e7928a84cf192091a337dbbdd80
+ - /v1/bundles/cbc77abbc54e4cc686d65156fe1d29a3
+ - /v1/bundles/6864abafeee8458bb9902628ee270cae
+ - /v1/bundles/75afdd5a5af74a559b8381c22ead1047
+ - /v1/bundles/ae5fbaa351e44897a211c0c9f097ffba
+ - /v1/bundles/0e81c313755248e3860c6f569498eb84
+ - /v1/bundles/f145f401d14442c1838d04764c5a5bf1
+ - /v1/bundles/41266fd35e6f4cf78c6040dd24b9c34d
+ - /v1/bundles/68bca9f916e846c79ccd2b8079afc2f4
 ```
 
 ### Fetch a particular bundle
@@ -88,7 +92,7 @@ require 'pp'
 
 clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
-bundle_url = '/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd'
+bundle_url = '/v1/bundles/d6dcddf1066b4dd4bed78334e553e233'
 bundle = clarify.get(bundle_url)
 puts "Bundle Name: #{bundle.name}"
 pp bundle
@@ -96,24 +100,25 @@ pp bundle
 
 Example output of bundle_fetch.rb:
 ```
-Bundle Name: The Future of Women in Flying
-#<Clarify::Responses::Bundle:0x007fc9c3171918
+Bundle Name: The-Surprising-Science-of-Happiness
+#<Clarify::Responses::Bundle:0x007f65808368b8
  @body=
-  {"id"=>"3fbca3fe3678495fb08fe939dbe4f1cd",
+  {"id"=>"d6dcddf1066b4dd4bed78334e553e233",
    "version"=>1,
-   "type"=>"audio",
-   "name"=>"The Future of Women in Flying",
-   "created"=>"2014-04-08T18:37:35.420Z",
-   "updated"=>"2014-04-08T18:37:35.420Z",
+   "name"=>"The-Surprising-Science-of-Happiness",
+   "created"=>"2015-04-21T18:13:47.377Z",
+   "updated"=>"2015-04-21T18:13:47.377Z",
    "_class"=>"Bundle",
    "_links"=>
-    {"self"=>{"href"=>"/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd"},
+    {"self"=>{"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233"},
      "curies"=>
       [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
      "clarify:metadata"=>
-      {"href"=>"/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd/metadata"},
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/metadata"},
      "clarify:tracks"=>
-      {"href"=>"/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd/tracks"}}},
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/tracks"},
+     "clarify:insights"=>
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights"}}},
  @response=#<Net::HTTPOK 200 OK readbody=true>>
 ```
 
@@ -136,14 +141,16 @@ end
 
 Example output of bundles_list_fetch.rb:
 ```
- - Bundle Name: The Future of Women in Flying
- - Bundle Name: Election Eve Campaign Speech
- - Bundle Name: Address to the Women of America
- - Bundle Name: Address to Congress - Baseball
- - Bundle Name: On Black Power
- - Bundle Name: First American in Earth Orbit
- - Bundle Name: On Releasing the Watergate Tapes
- - Bundle Name: Resignation Address
+ - Bundle Name: The-Surprising-Science-of-Happiness
+ - Bundle Name: GWB-2004-Victory-Speech
+ - Bundle Name: harvard-sentences-2
+ - Bundle Name: How-Schools-Kill-Creativity
+ - Bundle Name: MLK-I-Have-a-Dream
+ - Bundle Name: dorothyandthewizardinoz_01
+ - Bundle Name: How-Great-Leaders-Inspire-Action
+ - Bundle Name: The-Happy-Secret-to-Better-Work
+ - Bundle Name: FDR-Statue-of-Liberty
+ - Bundle Name: Reagan-Challenger-Disaster
 ```
 
 ### Get a list of tracks and the URL of their original media
@@ -165,14 +172,16 @@ end
 
 Example output of bundles_show_tracks.rb:
 ```
- - http://archive.org/download/Greatest_Speeches_of_the_20th_Century/TheFutureofWomeninFlying_64kb.mp3
- - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/ElectionEveCampaignSpeech_64kb.mp3
- - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/AddresstotheWomenofAmerica_64kb.mp3
- - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/AddresstoCongress-1958_64kb.mp3
- - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/OnBlackPower_64kb.mp3
- - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/TheFirstAmericaninEarthOrbit_64kb.mp3
- - http://ia700200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/OnReleasingtheWatergateTapes_64kb.mp3
- - http://ia600200.us.archive.org/18/items/Greatest_Speeches_of_the_20th_Century/ResignationAddress-1974_64kb.mp3
+ - http://media.clarify.io/video/presentations/DanGilbert-TED2004-The-Surprising-Science-of-Happiness.mp4
+ - http://media.clarify.io/audio/speeches/GWB-2004-Victory-Speech.mp3
+ - http://media.clarify.io/audio/samples/harvard-sentences-2.wav
+ - http://media.clarify.io/video/presentations/SirKenRobinson-TED2006-How-Schools-Kill-Creativity.mp4
+ - http://media.clarify.io/audio/speeches/MLK-I-Have-a-Dream.mp3
+ - http://media.clarify.io/audio/books/dorothyandthewizardinoz_01_baum_64kb.mp3
+ - http://media.clarify.io/video/presentations/SimonSinek-TEDxPugetSound-How-Great-Leaders-Inspire-Action.mp4
+ - http://media.clarify.io/video/presentations/ShawnAchor-TEDxBloomington-The-Happy-Secret-to-Better-Work.mp4
+ - http://media.clarify.io/audio/speeches/FDR-Statue-of-Liberty.mp3
+ - http://media.clarify.io/audio/speeches/Reagan-Challenger-Disaster.mp3
 ```
 
 ### Create a bundle
@@ -197,18 +206,20 @@ pp created_bundle
 
 Example output of bundle_create.rb:
 ```
-#<Clarify::Response:0x007ffb5428fc38
+#<Clarify::Response:0x007fd0740a7278
  @body=
-  {"id"=>"415bd191442846a6839c88ae3956eb64",
+  {"id"=>"1bf2f176592144398d799bfa2298f629",
    "_class"=>"Ref",
    "_links"=>
-    {"self"=>{"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64"},
+    {"self"=>{"href"=>"/v1/bundles/1bf2f176592144398d799bfa2298f629"},
      "curies"=>
       [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
      "clarify:metadata"=>
-      {"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64/metadata"},
+      {"href"=>"/v1/bundles/1bf2f176592144398d799bfa2298f629/metadata"},
      "clarify:tracks"=>
-      {"href"=>"/v1/bundles/415bd191442846a6839c88ae3956eb64/tracks"}}},
+      {"href"=>"/v1/bundles/1bf2f176592144398d799bfa2298f629/tracks"},
+     "clarify:insights"=>
+      {"href"=>"/v1/bundles/1bf2f176592144398d799bfa2298f629/insights"}}},
  @response=#<Net::HTTPCreated 201 Created readbody=true>>
 ```
 
@@ -232,15 +243,60 @@ end
 
 Example output of searches_paged_over.rb:
 ```
- - First American in Earth Orbit
+ - Reagan-Challenger-Disaster
 {"score"=>1,
  "term_results"=>
-  [{"score"=>0.379,
+  [{"score"=>0.34,
     "matches"=>
      [{"type"=>"audio",
        "track"=>0,
        "hits"=>
-        [{"start"=>67.41, "end"=>67.55}, {"start"=>92.76, "end"=>92.94}]}]}]}
+        [{"start"=>34.29, "end"=>34.71}, {"start"=>172.59, "end"=>173.2}]}]}]}
+ - How-Great-Leaders-Inspire-Action
+{"score"=>0.632,
+ "term_results"=>
+  [{"score"=>0.286,
+    "matches"=>
+     [{"type"=>"audio",
+       "track"=>0,
+       "hits"=>
+        [{"start"=>64.53, "end"=>65},
+         {"start"=>72.9, "end"=>73.12},
+         {"start"=>502.59, "end"=>502.81},
+         {"start"=>625.4, "end"=>625.65},
+         {"start"=>637.97, "end"=>638.25}]}]}]}
+ - FDR-Statue-of-Liberty
+{"score"=>0.566,
+ "term_results"=>
+  [{"score"=>0.155,
+    "matches"=>
+     [{"type"=>"audio",
+       "track"=>0,
+       "hits"=>[{"start"=>48.47, "end"=>48.73}]}]}]}
+ - The-Happy-Secret-to-Better-Work
+{"score"=>0.354,
+ "term_results"=>
+  [{"score"=>0.097,
+    "matches"=>
+     [{"type"=>"audio",
+       "track"=>0,
+       "hits"=>[{"start"=>652.78, "end"=>653.05}]}]}]}
+ - The-Surprising-Science-of-Happiness
+{"score"=>0.283,
+ "term_results"=>
+  [{"score"=>0.078,
+    "matches"=>
+     [{"type"=>"audio",
+       "track"=>0,
+       "hits"=>[{"start"=>78.05, "end"=>78.39}]}]}]}
+ - On-the-Edge-of-Hypermedia
+{"score"=>0.212,
+ "term_results"=>
+  [{"score"=>0.058,
+    "matches"=>
+     [{"type"=>"audio",
+       "track"=>0,
+       "hits"=>[{"start"=>2083.62, "end"=>2084.12}]}]}]}
 ```
 
 ### Get all of your bundles over many pages
@@ -259,14 +315,23 @@ end
 
 Example output of bundles_paged_over.rb:
 ```
- - The Future of Women in Flying
- - Election Eve Campaign Speech
- - Address to the Women of America
- - Address to Congress - Baseball
- - On Black Power
- - First American in Earth Orbit
- - On Releasing the Watergate Tapes
- - Resignation Address
+ - The-Surprising-Science-of-Happiness
+ - GWB-2004-Victory-Speech
+ - harvard-sentences-2
+ - How-Schools-Kill-Creativity
+ - MLK-I-Have-a-Dream
+ - dorothyandthewizardinoz_01
+ - How-Great-Leaders-Inspire-Action
+ - The-Happy-Secret-to-Better-Work
+ - FDR-Statue-of-Liberty
+ - Reagan-Challenger-Disaster
+ - Obama-2008-DNC-Speech
+ - GWB-2000-Victory-Speech
+ - Obama-2004-DNC-Keynote
+ - FDR-Inaugural-Address
+ - Mission-Critical-Innovation
+ - On-the-Edge-of-Hypermedia
+ - harvard-sentences-1
 ```
 
 
