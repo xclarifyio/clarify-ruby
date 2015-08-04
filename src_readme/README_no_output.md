@@ -78,7 +78,7 @@ require 'pp'
 
 clarify = Clarify::Client.new(api_key: 'docs-api-key')
 
-bundle_url = '/v1/bundles/3fbca3fe3678495fb08fe939dbe4f1cd'
+bundle_url = '/v1/bundles/d6dcddf1066b4dd4bed78334e553e233'
 bundle = clarify.get(bundle_url)
 puts "Bundle Name: #{bundle.name}"
 pp bundle
