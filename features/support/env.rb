@@ -32,5 +32,11 @@ World do
 end
 
 After do
+  customer.log_in_via_environment
+  customer.client.pager(customer.bundle_repository.fetch).each do |bundle_url|
+    bundle = customer.client.get(bundle_url)
+    customer.bundle_repository.delete!(bundle) if names.matches?(bundle.name)
+  end
+
   exceptions.raise_pending!
 end

@@ -9,6 +9,10 @@ module ClarifyTests
       "#{uuid}{#{name}}"
     end
 
+    def matches?(name)
+      !/^#{uuid}{(.*)}$/.match(name).nil?
+    end
+
     def uuid
       @uuid ||= SecureRandom.uuid
     end
