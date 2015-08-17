@@ -57,7 +57,7 @@ When(/^I create a bundle named "(.*?)" with the media url "(.*?)"$/) do |name, u
     name: names.translate(name),
     media_url: curies.resolve(url)
   }
-  customer.bundle_repository.create!(bundle)
+  @my_bundle = customer.bundle_repository.create!(bundle)
 end
 
 Then(/^my results should incude a bundle named "(.*?)"$/) do |name|
@@ -95,4 +95,30 @@ Then(/^the server should not list my bundle$/) do
   end
 
   expect(bundle_urls).to_not include(@my_bundle.relation('self'))
+end
+
+When(/I wait until the bundle has the "(.*?)" insight/) do |insight|
+  insight_url = nil
+  60.times do |i|
+    insights_url = @my_bundle.relation('clarify:insights')
+    puts "Fetching insight url (#{insights_url}) attempt #{i}"
+    insights = customer.client.get(insights_url)
+
+    if insights.relation(insight)
+      insight_url = insights.relation(insight)
+      break
+    else
+      sleep(i)
+    end
+  end
+
+  expect(insight_url).to_not eq(nil)
+end
+
+Then(/^the spoken words insight should reveal "(\d+)" spoken words$/) do |words|
+  insights_url = @my_bundle.relation('clarify:insights')
+  insights = customer.client.get(insights_url)
+  insight_url = insights.relation('insight:spoken_words')
+  insight = customer.client.get(insight_url)
+  expect(insight.body['track_data'][0]['word_count']).to eq(words.to_i)
 end

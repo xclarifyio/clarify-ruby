@@ -20,15 +20,20 @@ module Clarify
     end
 
     def klass_for_class(name)
-      klasses = {
-        'Collection' => Clarify::Responses::Collection,
-        'SearchCollection' => Clarify::Responses::SearchCollection,
-        'Bundle' => Clarify::Responses::Bundle,
-        'Tracks' => Clarify::Responses::Tracks,
-        'Ref' => Clarify::Response
-      }
-
       klasses.fetch name
+    end
+
+    def klasses
+      {
+        'Bundle' => Clarify::Responses::Bundle,
+        'Collection' => Clarify::Responses::Collection,
+        'Insights' => Clarify::Responses::Insights,
+        'Ref' => Clarify::Response,
+        'SearchCollection' => Clarify::Responses::SearchCollection,
+        'SpokenWordsInsight' => Clarify::Responses::SpokenWordsInsight,
+        'SpokenKeywordsInsight' => Clarify::Responses::SpokenKeywordsInsight,
+        'Tracks' => Clarify::Responses::Tracks
+      }
     end
   end
 end
