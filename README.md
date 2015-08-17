@@ -122,6 +122,134 @@ Bundle Name: The-Surprising-Science-of-Happiness
  @response=#<Net::HTTPOK 200 OK readbody=true>>
 ```
 
+### Fetch a particular bundle's insight list
+
+```ruby
+# bundle_insight_list.rb
+require 'clarify'
+require 'pp'
+
+clarify = Clarify::Client.new(api_key: 'docs-api-key')
+
+bundle_url = '/v1/bundles/d6dcddf1066b4dd4bed78334e553e233'
+bundle = clarify.get(bundle_url)
+
+bundle_insights_url = bundle.relation('clarify:insights')
+
+puts "Insights for Bundle Name: #{bundle.name} (#{bundle_insights_url})"
+insights = clarify.get(bundle_insights_url)
+pp insights
+puts '-----------'
+insights.each do |insight, insight_url|
+  puts "Insight #{insight} (#{insight_url})"
+  insight = clarify.get(insight_url)
+  pp insight
+  puts ''
+  puts ''
+  puts ''
+end
+```
+
+Example output of bundle_insight_list.rb:
+```
+Insights for Bundle Name: The-Surprising-Science-of-Happiness (/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights)
+#<Clarify::Responses::Insights:0x007f710e256760
+ @body=
+  {"bundle_id"=>"d6dcddf1066b4dd4bed78334e553e233",
+   "created"=>"2015-04-21T18:13:47.388Z",
+   "updated"=>"2015-05-16T20:39:27.740Z",
+   "_class"=>"Insights",
+   "_links"=>
+    {"self"=>{"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights"},
+     "parent"=>{"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233"},
+     "insight:spoken_words"=>
+      {"href"=>
+        "/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/c1ea412ef6aa434dbe05df12f97b9f89"},
+     "insight:spoken_keywords"=>
+      {"href"=>
+        "/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/b83668e8089148b7a5c96b1b045637ec"},
+     "curies"=>
+      [{"href"=>"/docs/insights/{rel}",
+        "name"=>"insight",
+        "templated"=>true}]}},
+ @response=#<Net::HTTPOK 200 OK readbody=true>>
+-----------
+Insight insight:spoken_words (/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/c1ea412ef6aa434dbe05df12f97b9f89)
+#<Clarify::Responses::SpokenWordsInsight:0x007f710e226b78
+ @body=
+  {"id"=>"c1ea412ef6aa434dbe05df12f97b9f89",
+   "bundle_id"=>"d6dcddf1066b4dd4bed78334e553e233",
+   "name"=>"spoken_words",
+   "status"=>"ready",
+   "created"=>"2015-04-21T18:13:50.087Z",
+   "updated"=>"2015-04-21T18:13:50.090Z",
+   "track_data"=>
+    [{"spoken_duration"=>1189.48,
+      "word_count"=>3709,
+      "spoken_duration_percent"=>0.93}],
+   "_class"=>"SpokenWordsInsight",
+   "_links"=>
+    {"self"=>
+      {"href"=>
+        "/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/c1ea412ef6aa434dbe05df12f97b9f89"},
+     "curies"=>
+      [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
+     "parent"=>
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights"},
+     "clarify:bundle"=>
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233"}}},
+ @response=#<Net::HTTPOK 200 OK readbody=true>>
+
+
+
+Insight insight:spoken_keywords (/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/b83668e8089148b7a5c96b1b045637ec)
+#<Clarify::Responses::SpokenKeywordsInsight:0x007f710e197ea0
+ @body=
+  {"id"=>"b83668e8089148b7a5c96b1b045637ec",
+   "bundle_id"=>"d6dcddf1066b4dd4bed78334e553e233",
+   "name"=>"spoken_keywords",
+   "status"=>"ready",
+   "created"=>"2015-05-16T20:39:27.739Z",
+   "updated"=>"2015-05-16T20:39:27.741Z",
+   "track_data"=>
+    [{"keywords"=>
+       [{"term"=>"one", "count"=>43, "weight"=>1},
+        {"term"=>"happiness", "count"=>27, "weight"=>0.628},
+        {"term"=>"like", "count"=>23, "weight"=>0.535},
+        {"term"=>"can", "count"=>20, "weight"=>0.465},
+        {"term"=>"know", "count"=>18, "weight"=>0.419},
+        {"term"=>"people", "count"=>17, "weight"=>0.395},
+        {"term"=>"really", "count"=>16, "weight"=>0.372},
+        {"term"=>"right", "count"=>15, "weight"=>0.349},
+        {"term"=>"2", "count"=>14, "weight"=>0.326},
+        {"term"=>"make", "count"=>13, "weight"=>0.302},
+        {"term"=>"change", "count"=>13, "weight"=>0.302},
+        {"term"=>"us", "count"=>12, "weight"=>0.279},
+        {"term"=>"say", "count"=>11, "weight"=>0.256},
+        {"term"=>"just", "count"=>11, "weight"=>0.256},
+        {"term"=>"better", "count"=>10, "weight"=>0.233},
+        {"term"=>"much", "count"=>10, "weight"=>0.233},
+        {"term"=>"now", "count"=>10, "weight"=>0.233},
+        {"term"=>"course", "count"=>10, "weight"=>0.233},
+        {"term"=>"3", "count"=>10, "weight"=>0.233},
+        {"term"=>"get", "count"=>9, "weight"=>0.209}]}],
+   "_class"=>"SpokenKeywordsInsight",
+   "_links"=>
+    {"self"=>
+      {"href"=>
+        "/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights/b83668e8089148b7a5c96b1b045637ec"},
+     "curies"=>
+      [{"href"=>"/docs/rels/{rel}", "name"=>"clarify", "templated"=>true}],
+     "parent"=>
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233/insights"},
+     "clarify:bundle"=>
+      {"href"=>"/v1/bundles/d6dcddf1066b4dd4bed78334e553e233"}}},
+ @response=#<Net::HTTPOK 200 OK readbody=true>>
+
+
+
+```
+
 ### Get a list of bundles and their names
 
 ```ruby

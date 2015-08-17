@@ -1,3 +1,8 @@
+# v2.1.0
+
+ - Added support for Insights: SpokenKeywordsInsight,
+   SpokenWordsInsight.
+
 # v2.0.0
 
 Release
