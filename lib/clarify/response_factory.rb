@@ -23,15 +23,16 @@ module Clarify
       klasses.fetch name
     end
 
-    def klasses
+    def klasses # rubocop:disable Metrics/MethodLength
       {
         'Bundle' => Clarify::Responses::Bundle,
         'Collection' => Clarify::Responses::Collection,
+        'ClassificationInsight' => Clarify::Responses::ClassificationInsight,
         'Insights' => Clarify::Responses::Insights,
         'Ref' => Clarify::Response,
         'SearchCollection' => Clarify::Responses::SearchCollection,
-        'SpokenWordsInsight' => Clarify::Responses::SpokenWordsInsight,
         'SpokenKeywordsInsight' => Clarify::Responses::SpokenKeywordsInsight,
+        'SpokenWordsInsight' => Clarify::Responses::SpokenWordsInsight,
         'Tracks' => Clarify::Responses::Tracks
       }
     end
